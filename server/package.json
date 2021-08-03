@@ -1,0 +1,22 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "This app helps to plot specific data onto the mapp",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rakesh-201/Plot-It.git"
+  },
+  "keywords": [
+    "map"
+  ],
+  "author": "Rakesh Rajpurohit",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rakesh-201/Plot-It/issues"
+  },
+  "homepage": "https://github.com/rakesh-201/Plot-It#readme"
+}
