@@ -49,7 +49,7 @@ const Navbar = () => {
         .get("https://maps.googleapis.com/maps/api/geocode/json", {
           params: {
             address: f.Address,
-            key: "AIzaSyANI0D9kFJIGTS_RMJ8QeevGkG78DApzjk",
+            key: "",
           },
         })
         .then((res) => {
