@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import * as XLSX from "xlsx";
+import axios from "axios";
 
 const Navbar = () => {
   const [file, setFile] = useState(null);
@@ -32,9 +33,29 @@ const Navbar = () => {
       });
 
       promise.then((data) => {
+        console.log(data);
         setFile(data);
       });
     }
+  };
+
+  const submitHandler = () => {
+    let arr = [];
+
+    // Getting some error in geocode api of google need to replace it!!
+
+    file.map((f) => {
+      axios
+        .get("https://maps.googleapis.com/maps/api/geocode/json", {
+          params: {
+            address: f.Address,
+            key: "AIzaSyANI0D9kFJIGTS_RMJ8QeevGkG78DApzjk",
+          },
+        })
+        .then((res) => {
+          console.log(res);
+        });
+    });
   };
 
   return (
@@ -109,16 +130,19 @@ const Navbar = () => {
               </a>
             </li>
           </ul>
-          {/* <form class="d-flex"> */}
-          <input
-            type="file"
-            class="btn btn-secondary"
-            onChange={(e) => {
-              console.log(e.target.files.length);
-              fileHandler(e.target.files);
-            }}
-          />
-          {/* </form> */}
+          <form class="d-flex">
+            <input
+              type="file"
+              class="btn btn-secondary"
+              onChange={(e) => {
+                console.log(e.target.files.length);
+                fileHandler(e.target.files);
+              }}
+            />
+            <a class="btn btn-primary mx-2" onClick={submitHandler}>
+              Submit
+            </a>
+          </form>
         </div>
       </div>
     </nav>
