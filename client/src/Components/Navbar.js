@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import * as XLSX from "xlsx";
+import { useDispatch } from "react-redux";
 import axios from "axios";
+import GeoCode from "react-geocode";
+import { file_upload } from "../store/actions/file";
 
 const Navbar = () => {
   const [file, setFile] = useState(null);
+
+  const dispatch = useDispatch();
+
   const fileHandler = (files) => {
     if (!files.length) {
       setFile(null);
@@ -44,18 +50,20 @@ const Navbar = () => {
 
     // Getting some error in geocode api of google need to replace it!!
 
-    file.map((f) => {
-      axios
-        .get("https://maps.googleapis.com/maps/api/geocode/json", {
-          params: {
-            address: f.Address,
-            key: "",
-          },
-        })
-        .then((res) => {
-          console.log(res);
-        });
-    });
+    // file.map((f) => {
+    //   axios
+    //     .get("http://api.positionstack.com/v1/forward", {
+    //       params: {
+    //         access_key: "7098473f21d43ac9347bc0eb63533392",
+    //         query: f.Address,
+    //       },
+    //     })
+    //     .then((res) => {
+    //       console.log(res);
+    //     });
+    // });
+
+    dispatch(file_upload(file));
   };
 
   return (
