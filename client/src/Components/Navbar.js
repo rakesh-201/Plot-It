@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 import GeoCode from "react-geocode";
 import { file_upload } from "../store/actions/file";
+import NavbarUI from "./NavbarUI";
 
 const Navbar = () => {
   const [file, setFile] = useState(null);
@@ -48,113 +49,63 @@ const Navbar = () => {
   const submitHandler = () => {
     let arr = [];
 
-    // Getting some error in geocode api of google need to replace it!!
-
-    // file.map((f) => {
-    //   axios
-    //     .get("http://api.positionstack.com/v1/forward", {
+    // file.map(async (f) => {
+    //   try {
+    //     let options = {
+    //       method: "GET",
+    //       url: "https://forward-reverse-geocoding.p.rapidapi.com/v1/search",
     //       params: {
-    //         access_key: "7098473f21d43ac9347bc0eb63533392",
-    //         query: f.Address,
+    //         q: f.Address,
+    //         "accept-language": "en",
+    //         polygon_threshold: "0.0",
     //       },
-    //     })
-    //     .then((res) => {
-    //       console.log(res);
+    //       headers: {
+    //         "x-rapidapi-key":
+    //           "2b3302da65msh2365ff3cc77636fp122d35jsnf399810b9850",
+    //         "x-rapidapi-host": "forward-reverse-geocoding.p.rapidapi.com",
+    //       },
+    //     };
+    //     const response = await axios.request(options);
+
+    //     console.log(response);
+
+    //     // console.log(response.data[0].lat + " " + response.data[0].lon);
+
+    //     options = {
+    //       method: "GET",
+    //       url: "https://forward-reverse-geocoding.p.rapidapi.com/v1/reverse",
+    //       params: {
+    //         lat: response.data[0].lat,
+    //         lon: response.data[0].lon,
+    //         "accept-language": "en",
+    //         polygon_threshold: "0.0",
+    //       },
+    //       headers: {
+    //         "x-rapidapi-key":
+    //           "2b3302da65msh2365ff3cc77636fp122d35jsnf399810b9850",
+    //         "x-rapidapi-host": "forward-reverse-geocoding.p.rapidapi.com",
+    //       },
+    //     };
+
+    //     const res = await axios.request(options);
+
+    //     console.log(res.data.address.postcode);
+
+    //     arr.push({
+    //       ...f,
+    //       lat: response.data[0].lat,
+    //       lng: response.data[0].lon,
+    //       postcode: res.data.address.postcode,
     //     });
+    //   } catch (err) {
+    //     console.log(err);
+    //   }
     // });
 
     dispatch(file_upload(file));
   };
 
-  return (
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-          Navbar
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">
-                Home
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                Link
-              </a>
-            </li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                id="navbarDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Dropdown
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li>
-                  <a class="dropdown-item" href="#">
-                    Action
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">
-                    Another action
-                  </a>
-                </li>
-                <li>
-                  <hr class="dropdown-divider" />
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">
-                    Something else here
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link disabled"
-                href="#"
-                tabindex="-1"
-                aria-disabled="true"
-              >
-                Disabled
-              </a>
-            </li>
-          </ul>
-          <form class="d-flex">
-            <input
-              type="file"
-              class="btn btn-secondary"
-              onChange={(e) => {
-                console.log(e.target.files.length);
-                fileHandler(e.target.files);
-              }}
-            />
-            <a class="btn btn-primary mx-2" onClick={submitHandler}>
-              Submit
-            </a>
-          </form>
-        </div>
-      </div>
-    </nav>
-  );
+  return <NavbarUI fileHandler={fileHandler} submitHandler={submitHandler} />;
 };
 
 export default Navbar;
