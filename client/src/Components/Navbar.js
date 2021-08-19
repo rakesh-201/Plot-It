@@ -53,16 +53,14 @@ const Navbar = () => {
     //   try {
     //     let options = {
     //       method: "GET",
-    //       url: "https://forward-reverse-geocoding.p.rapidapi.com/v1/search",
+    //       url: "",
     //       params: {
     //         q: f.Address,
     //         "accept-language": "en",
     //         polygon_threshold: "0.0",
     //       },
     //       headers: {
-    //         "x-rapidapi-key":
-    //           "2b3302da65msh2365ff3cc77636fp122d35jsnf399810b9850",
-    //         "x-rapidapi-host": "forward-reverse-geocoding.p.rapidapi.com",
+    //         
     //       },
     //     };
     //     const response = await axios.request(options);
@@ -73,7 +71,7 @@ const Navbar = () => {
 
     //     options = {
     //       method: "GET",
-    //       url: "https://forward-reverse-geocoding.p.rapidapi.com/v1/reverse",
+    //       url: "",
     //       params: {
     //         lat: response.data[0].lat,
     //         lon: response.data[0].lon,
@@ -81,9 +79,7 @@ const Navbar = () => {
     //         polygon_threshold: "0.0",
     //       },
     //       headers: {
-    //         "x-rapidapi-key":
-    //           "2b3302da65msh2365ff3cc77636fp122d35jsnf399810b9850",
-    //         "x-rapidapi-host": "forward-reverse-geocoding.p.rapidapi.com",
+    //          
     //       },
     //     };
 
