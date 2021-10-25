@@ -18,5 +18,9 @@
   "bugs": {
     "url": "https://github.com/rakesh-201/Plot-It/issues"
   },
-  "homepage": "https://github.com/rakesh-201/Plot-It#readme"
+  "homepage": "https://github.com/rakesh-201/Plot-It#readme",
+  "dependencies": {
+    "nodemon": "^2.0.14",
+    "pg": "^8.7.1"
+  }
 }
