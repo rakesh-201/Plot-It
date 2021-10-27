@@ -49,6 +49,8 @@ const Navbar = () => {
   const submitHandler = () => {
     let arr = [];
 
+    console.log(file);
+
     // file.map(async (f) => {
     //   try {
     //     let options = {
@@ -60,7 +62,7 @@ const Navbar = () => {
     //         polygon_threshold: "0.0",
     //       },
     //       headers: {
-    //         
+    //
     //       },
     //     };
     //     const response = await axios.request(options);
@@ -79,7 +81,7 @@ const Navbar = () => {
     //         polygon_threshold: "0.0",
     //       },
     //       headers: {
-    //          
+    //
     //       },
     //     };
 
@@ -99,6 +101,10 @@ const Navbar = () => {
     // });
 
     dispatch(file_upload(file));
+
+    axios.post("https://5000-tan-walrus-stii8xft.ws-us18.gitpod.io/analyse", {
+      data: file,
+    });
   };
 
   return <NavbarUI fileHandler={fileHandler} submitHandler={submitHandler} />;
