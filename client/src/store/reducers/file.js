@@ -1,7 +1,8 @@
-import { FILE_UPLOAD } from "../actions/file";
+import { FILE_UPLOAD, SAVE_RESULTS } from "../actions/file";
 
 const initialState = {
   data: [],
+  results: [],
 };
 
 export default (state = initialState, actions) => {
@@ -11,6 +12,13 @@ export default (state = initialState, actions) => {
         ...state,
         data: actions.file,
       };
+
+    case SAVE_RESULTS:
+      return {
+        ...state,
+        results: actions.results,
+      };
+
     default:
       return state;
   }

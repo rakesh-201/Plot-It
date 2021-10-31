@@ -3,7 +3,7 @@ import * as XLSX from "xlsx";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import GeoCode from "react-geocode";
-import { file_upload } from "../store/actions/file";
+import { file_upload, save_results } from "../store/actions/file";
 import NavbarUI from "./NavbarUI";
 
 const Navbar = () => {
@@ -102,9 +102,17 @@ const Navbar = () => {
 
     dispatch(file_upload(file));
 
-    axios.post("https://5000-tan-walrus-stii8xft.ws-us18.gitpod.io/analyse", {
-      data: file,
-    });
+    axios
+      .post("https://5000-tan-walrus-stii8xft.ws-us18.gitpod.io/analyse", {
+        data: file,
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch(save_results(res));
+        <Redirect to="/analysis" push />
+
+      })
+      .catch((err) => console.log(err));
   };
 
   return <NavbarUI fileHandler={fileHandler} submitHandler={submitHandler} />;
